@@ -13,9 +13,10 @@ def order(values: list = None) -> list:
 def anagrams(words: list = None) -> bool:
     if words is None:
         # TODO: demander les mots ici
+
         pass
 
-    return False
+    return anagram
 
 
 def contains_doubles(items: list) -> bool:
@@ -31,7 +32,26 @@ def frequence(sentence: str) -> dict:
     # TODO: Afficher les lettres les plus fréquentes
     #       Retourner le tableau de lettres
 
-    return {}
+    dic = {}
+
+    for letter in sentence:
+        if letter.isalpha():
+            if letter in dic:
+                dic[letter] += 1
+            else:
+                dic[letter] = 1
+
+    list = []
+    for cle in dic:
+        if dic[cle] > 5:
+            list.append([dic[cle], cle]) # met frequence en premier pour sorted() car tri le premier truc de la liste
+    # list = [list.append([dic[cle], cle]) for cle in dic if dic[cle] > 5]
+
+    new_list = sorted(list, reverse=True) # modifie pas la liste retourne une nouvelle liste en decroissant
+    # list.sort()
+    # list.reverse()
+
+    return new_list
 
 
 def get_recipes():
